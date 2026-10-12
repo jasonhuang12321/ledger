@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑记账</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page">
+<h1>编辑这一笔</h1>
+<p><a href="/">返回首页</a></p>
+<p class="error" th:if="${formError}" th:text="${formError}"></p>
+<form th:action="@{/edit}" method="post">
+    <input type="hidden" name="id" th:value="${entry.id}">
+    <p>
+        类型：
+        <label>
+            <input type="radio" name="type" value="支出" th:checked="${entry.type == '支出'}"> 支出
+        </label>
+        <label>
+            <input type="radio" name="type" value="收入" th:checked="${entry.type == '收入'}"> 收入
+        </label>
+    </p>
+    <p>金额：<input type="number" name="amount" step="0.01" min="0.01" th:value="${entry.amount}" required></p>
+    <p>分类：<input type="text" name="category" th:value="${entry.category}" required></p>
+    <p>备注：<input type="text" name="note" th:value="${entry.note}"></p>
+    <button type="submit">保存修改</button>
+</form>
+</div>
+</body>
+</html>

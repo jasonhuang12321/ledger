@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>全部账单 - 独立前端</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page">
+    <h1>全部账单（管理员）</h1>
+    <p>当前账号：<span id="who">admin</span>　<a href="/app/home.html">回我的首页</a></p>
+    <p><button type="button" id="logout-btn">退出登录</button></p>
+    <p class="error" id="error"></p>
+    <div class="summary">
+        <div>全部收入：<b class="income" id="income">0</b> 元</div>
+        <div>全部支出：<b class="expense" id="expense">0</b> 元</div>
+        <div>全部结余：<b id="balance">0</b> 元</div>
+    </div>
+    <form id="filter-form">
+        <p>
+            月份：<input type="month" id="month">
+            <button type="submit">筛选</button>
+        </p>
+    </form>
+    <table class="ledger">
+        <thead>
+        <tr>
+            <th>用户</th>
+            <th>日期</th>
+            <th>类型</th>
+            <th>分类</th>
+            <th>金额</th>
+            <th>备注</th>
+        </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+    </table>
+</div>
+<script src="/app/js/api.js"></script>
+<script src="/app/js/admin.js"></script>
+</body>
+</html>

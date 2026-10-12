@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册 - 记账本</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page">
+<h1>注册记账账号</h1>
+<p class="error" th:if="${error}" th:text="${error}"></p>
+<form th:action="@{/register}" method="post">
+    <p>用户名：<input type="text" name="username" required></p>
+    <p>密码：<input type="password" name="password" required></p>
+    <button type="submit">注册</button>
+</form>
+<p><a href="/login">已有账号，去登录</a></p>
+</div>
+</body>
+</html>

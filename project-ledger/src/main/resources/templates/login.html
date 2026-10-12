@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录 - 记账本</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page">
+<h1>个人记账本</h1>
+<p class="error" th:if="${param.error}">用户名或密码错误</p>
+<p class="ok" th:if="${message}" th:text="${message}"></p>
+<form th:action="@{/login}" method="post">
+    <p>用户名：<input type="text" name="username" required></p>
+    <p>密码：<input type="password" name="password" required></p>
+    <button type="submit">登录</button>
+</form>
+<p><a href="/register">注册新账号</a>　<a href="/app/index.html">独立前端（JWT）</a>　<a href="/ui/">Vue 打包版</a></p>
+<p>演示账号：xiaoming / 123456　或　xiaohong / 123456<br>
+管理员：admin / 123456</p>
+</div>
+</body>
+</html>

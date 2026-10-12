@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>独立前端登录 - 记账本</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page">
+    <h1>记账本（独立前端）</h1>
+    <p>这一页不是 Thymeleaf 拼出来的。登录后拿到 JWT，存在浏览器本地。</p>
+    <p class="error" id="error"></p>
+    <form id="login-form">
+        <p>用户名：<input id="username" type="text" required></p>
+        <p>密码：<input id="password" type="password" required></p>
+        <button type="submit">登录</button>
+    </form>
+    <p>演示：xiaoming / 123456　管理员：admin / 123456</p>
+    <p><a href="/login">回到原来的网页登录</a></p>
+</div>
+<script src="/app/js/api.js"></script>
+<script src="/app/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>全部账单 - 管理员</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page">
+<h1>全部账单（管理员）</h1>
+<p>当前账号：<span th:text="${username}">admin</span>
+   　<a href="/">回我的首页</a></p>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">退出登录</button>
+</form>
+
+<div class="summary">
+    <div>全部收入：<b class="income" th:text="${income}">0</b> 元</div>
+    <div>全部支出：<b class="expense" th:text="${expense}">0</b> 元</div>
+    <div>全部结余：<b th:text="${balance}">0</b> 元</div>
+</div>
+
+<form action="/admin" method="get">
+    <p>
+        月份：
+        <input type="month" name="month" th:value="${month}">
+        <button type="submit">筛选</button>
+        <a href="/admin">查看全部</a>
+        <a th:href="@{/admin/export(month=${month})}">导出 Excel</a>
+    </p>
+</form>
+
+<table class="ledger">
+    <tr>
+        <th>用户</th>
+        <th>日期</th>
+        <th>类型</th>
+        <th>分类</th>
+        <th>金额</th>
+        <th>备注</th>
+    </tr>
+    <tr th:each="e : ${entries}">
+        <td th:text="${usernames.get(e.userId)}">用户</td>
+        <td th:text="${e.createdAt}">日期</td>
+        <td th:text="${e.type}">支出</td>
+        <td th:text="${e.category}">分类</td>
+        <td th:text="${e.amount}">0</td>
+        <td th:text="${e.note}">备注</td>
+    </tr>
+</table>
+<p th:if="${#lists.isEmpty(entries)}">还没有任何账单。</p>
+<p th:if="${totalCount > 0}">
+    共 <span th:text="${totalCount}">0</span> 条，
+    第 <span th:text="${page}">1</span> /
+    <span th:text="${totalPages}">1</span> 页
+    <a th:if="${page > 1}" th:href="@{/admin(month=${month}, page=${page - 1})}">上一页</a>
+    <a th:if="${page < totalPages}" th:href="@{/admin(month=${month}, page=${page + 1})}">下一页</a>
+</p>
+</div>
+</body>
+</html>
